@@ -3,10 +3,9 @@
 const Item = ({name, quantity, category}) => {
 
 return (
-    <li> 
+    <li className="p-2 m-2"> 
         <div>{name}</div>
-        <div>{quantity}</div>
-        <div>{category}</div>
+        <div>buy {quantity} in {category}</div>
     </li>
     )
 }
