@@ -9,6 +9,7 @@ export default function Home() {
         <ol className="flex flex-col text-xl m-5">
           <a className="hover:underline" href="/week-2">Week 2 Assignment</a>
           <a className="hover:underline" href="/week-3">Week 3 Assignment </a>
+          <a className="hover:underline" href="/week-4">Week 4 Assignment </a>
        </ol>
       </div>
     </main>
