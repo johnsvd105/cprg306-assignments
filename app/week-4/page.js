@@ -1,7 +1,10 @@
+import NewItem from "./new-item"
 const Page = () => {
     return (
         <main>
-            <newItem/>
+            <div>
+                <NewItem/>
+            </div>
         </main>
     )
 }
