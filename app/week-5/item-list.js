@@ -17,12 +17,14 @@ const ItemList = () => {
 
       return (
         <div>
-            <button onClick={() => setSortBy("name")}>Sort by Name</button>
-            <button onClick={() => setSortBy("category")}>Sort by Category</button>
-
-            {Items.map((item,index) => (
-            <ul>
-            <Item key={index}
+          <div>
+          <label>Sort by: </label>
+            <button onClick={() => setSortBy("name")} className={`p-2 m-2 w-24 ${sortBy === 'name' ? 'bg-orange-500' : 'bg-orange-700'}`}> Name </button>
+            <button onClick={() => setSortBy("category")} className={`p-2 m-2 w-24 ${sortBy === 'name' ? 'bg-orange-700' : 'bg-orange-500'}`}>category</button>
+          </div>
+            {Items.map((item) => (
+            <ul key={item.id}>
+            <Item
               name={item.name}
               quantity={item.quantity}
               category={item.category}
