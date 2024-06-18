@@ -35,15 +35,15 @@ const newItem = ({onAddItem}) => {
         }
 
     return (
-        <main className="flex justify-center w-full">
-                <form onSubmit={handleSubmit} className="p-2 m-4  max-w-sm w-full bg-indigo-600 ">
+        <main className="flex w-full">
+                <form onSubmit={handleSubmit} className="p-2 m-2  max-w-sm w-full bg-indigo-600 rounded-lg">
                     <div className="mb-2">
-                        <input type="text" value={name} onChange={handleNameChange} required placeholder="Product Name" className="w-full rounded-lg p-2"/>
+                        <input type="text" value={name} onChange={handleNameChange} required placeholder="Product Name" className="w-full rounded-lg p-2 text-black placeholder-gray-600"/>
                     </div>
 
                     <div className="flex justify-between">
-                        <input type="number" min={1} max={99} value={quantity} onChange={handleQuantityChange} required className="w-20 p-2 rounded-lg"/>
-                        <select value={category} onChange={handleCategoryChange} className="p-2 rounded-lg">
+                        <input type="number" min={1} max={99} value={quantity} onChange={handleQuantityChange} required className="w-20 p-2 rounded-lg text-black"/>
+                        <select value={category} onChange={handleCategoryChange} className="p-2 rounded-lg  text-black">
                             <option value="Produce">Produce</option>
                             <option value="Dairy">Dairy</option>
                             <option value="Bakery">Bakery</option>
