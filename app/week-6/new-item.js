@@ -22,14 +22,18 @@ const newItem = ({onAddItem}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        const idConcat =`${name}${quantity}${category}`; //creates unique id based off all fields
+
         const item = {
+            id: idConcat,
             name: name,
             quantity: quantity,
             category: category
           };
           onAddItem(item)
-          //keeping the clear
-          setName("");
+
+          //clears the fields
+          setName("")
           setQuantity(1)
           setCategory("produce")
         }
