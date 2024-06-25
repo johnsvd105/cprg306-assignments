@@ -23,8 +23,8 @@ const MealIdeas = ({ingredient}) => {
 
     const loadMealIdeas = async() => {
         try {
-            const mealideas = await fetchMealIdeas(ingredient)
-            setMeals(mealideas)
+            const mealIdeas = await fetchMealIdeas(ingredient)
+            setMeals(mealIdeas)
         } catch (error) {
             console.error("Error fetching meal ideas:", error);
             setMeals([]);
