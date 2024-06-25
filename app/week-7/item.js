@@ -1,9 +1,9 @@
 
 
-const Item = ({name, quantity, category}) => {
+const Item = ({name, quantity, category, onSelect}) => {
 
 return (
-    <li className="p-2 m-4 bg-indigo-600 max-w-sm"> 
+    <li className="p-2 m-4 bg-indigo-600 max-w-sm" onClick={onSelect}> 
         <div className="text-xl">{name}</div>
         <div className="text-base">buy {quantity} in {category}</div>
     </li>

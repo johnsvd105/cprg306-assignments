@@ -2,7 +2,7 @@
 import Item from "./item"
 import { useState } from "react"
 
-const ItemList = ({items}) => {
+const ItemList = ({items, onItemSelect}) => {
 
   const [sortBy, setSortBy] = useState("name")
 
@@ -29,6 +29,7 @@ const ItemList = ({items}) => {
               name={item.name}
               quantity={item.quantity}
               category={item.category}
+              onSelect={() => onItemSelect(item)}
             />
         ))}
         </ul>
