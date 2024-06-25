@@ -19,7 +19,7 @@ const Page = () => {
         let name = selectedItem.name;
         let cleanedItemName = name.split(',')[0];
         cleanedItemName = cleanedItemName.trim(); 
-        cleanedItemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|�[�-�]|�[�-�]|[\u2011-\u26FF]|�[�-�])/g, '');
+        cleanedItemName = cleanedItemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
 
         setSelectedItemName(cleanedItemName)
     }
@@ -30,13 +30,17 @@ const Page = () => {
             <div className="p-3 text-violet-50" >
             <h1 className="font-bold text-3xl py-2">Shopping list</h1>
             <h2 className="text-xl">Add New Item</h2>
-            <div className="flex">
+            <div className="flex ">
+
+            <div className="flex-1 max-w-sm">
                 <NewItem onAddItem={handleAddItem}/>
                 <ItemList items={items} onItemSelect={handleItemSelected}/>
             </div>
-            <div className="flex">
+            <div className="flex-1 max-w-sm">
                 <MealIdeas ingredient={selectedItemName}/>
             </div>
+            </div>
+
 
             </div>
         </main>

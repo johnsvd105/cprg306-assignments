@@ -16,7 +16,6 @@ import { useEffect, useState } from "react"
         console.log(`Error ${error}`)
         return [];
     }
-
 }
 
 const MealIdeas = ({ingredient}) => {
@@ -40,13 +39,14 @@ const MealIdeas = ({ingredient}) => {
 
     return (
         <div>
-            <header>
-                <h1>Meal Ideas</h1>
+            <header className="mx-3">
+                <h1 className="text-xl font-bold">Meal Ideas</h1>
                 <h2>Here are some meal ideas using {ingredient}:</h2>
             </header>
-            <ul>
+            <ul >
                 {meals.map((meal) => (
-                    <li key={meal.idMeal}>
+                    <li key={meal.idMeal} className="p-2 m-3 bg-indigo-600 max-w-sm "> 
+                    {/* hover:bg-orange-700 cursor-pointer */}
                         {meal.strMeal}
                     </li>
                 ))}
