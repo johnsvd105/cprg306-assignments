@@ -3,13 +3,19 @@ import ItemList from "./item-list"
 import NewItem from "./new-item"
 import ItemsData from "./items.json"
 import MealIdeas from "./meal-ideas"
+import { useUserAuth } from "../_utils/auth-context"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+
 
 const Page = () => {
 
     const [items, setItems] = useState(ItemsData);
     const [selectedItemName, setSelectedItemName] = useState("");
+
+    const {user} = useUserAuth();
+
 
     const handleAddItem = (newItem) => {
         setItems([...items, newItem]);
@@ -23,25 +29,33 @@ const Page = () => {
 
         setSelectedItemName(cleanedItemName)
     }
+    
 
 
     return (
-        <main className=" bg-violet-950">
+        <main className=" bg-violet-950 h-screen">
             <div className="p-3 text-violet-50" >
-            <h1 className="font-bold text-3xl py-2">Shopping list</h1>
-            <h2 className="text-xl">Add New Item</h2>
-            <div className="flex ">
-
-            <div className="flex-1 max-w-sm">
-                <NewItem onAddItem={handleAddItem}/>
-                <ItemList items={items} onItemSelect={handleItemSelected}/>
-            </div>
-            <div className="flex-1 max-w-sm">
-                <MealIdeas ingredient={selectedItemName}/>
-            </div>
-            </div>
-
-
+                <div>
+                    {!user ? (
+                        <div>
+                            <h1 className="font-bold text-xl">Not logged in</h1>
+                        </div>
+                    ) : ( 
+                        <div>
+                            <h1 className="font-bold text-3xl py-2">Shopping list</h1>
+                            <h2 className="text-xl">Add New Item</h2>
+                            <div className="flex ">
+                                <div className="flex-1 max-w-sm">
+                                    <NewItem onAddItem={handleAddItem}/>
+                                    <ItemList items={items} onItemSelect={handleItemSelected}/>
+                                </div>
+                                <div className="flex-1 max-w-sm">
+                                    <MealIdeas ingredient={selectedItemName}/>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </main>
     )

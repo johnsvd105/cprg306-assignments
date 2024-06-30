@@ -1,9 +1,6 @@
 "use client"
 import { useUserAuth } from "./_utils/auth-context";
 
- 
-
-
 
 const Page = () => {
     const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -24,22 +21,23 @@ const Page = () => {
         }
     }
 
-
-
     return (
-        <main className="bg-violet-950 flex-1">
+        <main className="bg-violet-950 h-screen">
             <div className="p-3 text-violet-50">
-                {user ? (
-                    <div>
-                    <h1> Hello, {user.displayName}</h1>
-                    <button onClick={handleFirebaseSignOut} className="p-2"> Sign out</button>
-                    </div>
-                ) : (
-                    <div>
-                        <h1>Sign in with github</h1>
-                        <button onClick={handleGitHubSignIn} className="p-2"> Sign in</button>
-                    </div>
-                )}
+                    {user ? (
+                        <div className="flex-col m-2">
+                        <h1 className="font-bold text-xl"> Signed in as {user.displayName} ({user.email})</h1>
+                        <h2 className="text-lg">
+                            <a className="hover:underline" href="/week-8/shopping-list">continue to your shopping list</a>
+                        </h2>
+                        <button onClick={handleFirebaseSignOut} className="bg-blue-600 p-2 mt-4 rounded-lg hover:bg-blue-700"> Sign out</button>
+                        </div>
+                    ) : (
+                        <div className="flex-col m-2"> 
+                            <h1 className="font-bold text-xl">Sign in with github</h1>
+                            <button onClick={handleGitHubSignIn} className="bg-blue-600 p-2 mt-4 rounded-lg hover:bg-blue-700"> Sign in</button>
+                        </div>
+                    )}
             </div>   
         </main>
     )
