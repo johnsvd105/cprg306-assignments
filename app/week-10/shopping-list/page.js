@@ -22,7 +22,7 @@ const Page = () => {
 
             newItem.id = newItemId;
 
-            setItems([...items,newItem]);
+            setItems([...items, {id: newItemId, data: newItem}]);
         }
         catch(error) {
             console.error("error adding item:", error);
@@ -32,7 +32,7 @@ const Page = () => {
     const handleItemSelected = (selectedItem) => {
         if(selectedItem) 
         {
-            let name = selectedItem.name;
+            let name = selectedItem.data.name;
             let cleanedItemName = name.split(',')[0];
             cleanedItemName = cleanedItemName.trim(); 
             cleanedItemName = cleanedItemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
@@ -57,13 +57,14 @@ const Page = () => {
     };
 
     useEffect(() => {
-        loadItems();
+        if(user) {
+            loadItems();
+        }
     }, [user]);
 
 
-
     return (
-        <main className=" bg-violet-950 h-screen">
+        <main className=" bg-violet-950 min-h-screen">
             <div className="p-3 text-violet-50" >
                 <div>
                     {!user ? (

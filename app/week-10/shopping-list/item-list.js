@@ -12,25 +12,13 @@ const ItemList = ({items, onItemSelect}) => {
     const sorted =[...items]
 
     if (sortBy === "name") {
-      sorted.sort((a, b) => {
-        if (a.name && b.name) {
-          return a.name.localeCompare(b.name);
-        }
-        else {
-          return 0;
-        }
-    });
-  }
-  else if (sortBy ==="category") {
-      sorted.sort((a, b) => {
-        if (a.name && b.name) {
-          return a.category.localeCompare(b.category);
-        }
-        else {
-          return 0;
-        }
-      });      
+      sorted.sort((a, b) => a.data.name.localeCompare(b.data.name))
     }
+  
+    if (sortBy ==="category") {
+      sorted.sort((a, b) => a.data.category.localeCompare(b.data.category));
+    }
+
     setSortedItems(sorted);
   },[items,sortBy])
 
@@ -44,10 +32,10 @@ const ItemList = ({items, onItemSelect}) => {
           </div>
           <ul>
             {sortedItems.map((item) => (
-            <Item key={item.id}
-              name={item.name}
-              quantity={item.quantity}
-              category={item.category}
+            <Item key={item.data.id}
+              name={item.data.name}
+              quantity={item.data.quantity}
+              category={item.data.category}
               onSelect={() => onItemSelect(item)}
             />
         ))}
