@@ -1,9 +1,9 @@
 "use client"
 import ItemList from "./item-list"
 import NewItem from "./new-item"
-import ItemsData from "./items.json"
 import MealIdeas from "./meal-ideas"
 import { useUserAuth } from "../_utils/auth-context"
+import {getItems, addItems} from "../_services/shopping-list-service"
 
 import { useEffect, useState } from "react"
 
@@ -11,25 +11,55 @@ import { useEffect, useState } from "react"
 
 const Page = () => {
 
-    const [items, setItems] = useState(ItemsData);
+    const [items, setItems] = useState([]);
     const [selectedItemName, setSelectedItemName] = useState("");
 
     const {user} = useUserAuth();
 
+    const handleAddItem = async (newItem) => {
+        try {
+            const newItemId = await addItems(user.uid,newItem);
 
-    const handleAddItem = (newItem) => {
-        setItems([...items, newItem]);
+            newItem.id = newItemId;
+
+            setItems([...items,newItem]);
+        }
+        catch(error) {
+            console.error("error adding item:", error);
+        }
     };
 
     const handleItemSelected = (selectedItem) => {
-        let name = selectedItem.name;
-        let cleanedItemName = name.split(',')[0];
-        cleanedItemName = cleanedItemName.trim(); 
-        cleanedItemName = cleanedItemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+        if(selectedItem) 
+        {
+            let name = selectedItem.name;
+            let cleanedItemName = name.split(',')[0];
+            cleanedItemName = cleanedItemName.trim(); 
+            cleanedItemName = cleanedItemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
 
-        setSelectedItemName(cleanedItemName)
+            setSelectedItemName(cleanedItemName)
+        }
     }
     
+    const loadItems = async () => {
+        try {
+            if (user && user.uid) {
+                const userItems = await getItems(user.uid);
+                setItems(userItems);
+            }
+            else {
+                console.log("User not logged in. Somehow");
+            }
+        }
+        catch (error) {
+            console.error("error loading items: ", error)
+        }
+    };
+
+    useEffect(() => {
+        loadItems();
+    }, [user]);
+
 
 
     return (

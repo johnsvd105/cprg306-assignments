@@ -1,20 +1,39 @@
 "use client"
 import Item from "./item"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const ItemList = ({items, onItemSelect}) => {
 
   const [sortBy, setSortBy] = useState("name")
 
-  const sortedItems = [...items]
+  const [sortedItems,setSortedItems] = useState([...items])
 
-  if (sortBy == "name") {
-    sortedItems.sort((a, b) => a.name.localeCompare(b.name))
-  }
+  useEffect(() => {
+    const sorted =[...items]
 
-  if (sortBy =="category") {
-    sortedItems.sort((a, b) => a.category.localeCompare(b.category));
+    if (sortBy === "name") {
+      sorted.sort((a, b) => {
+        if (a.name && b.name) {
+          return a.name.localeCompare(b.name);
+        }
+        else {
+          return 0;
+        }
+    });
   }
+  else if (sortBy ==="category") {
+      sorted.sort((a, b) => {
+        if (a.name && b.name) {
+          return a.category.localeCompare(b.category);
+        }
+        else {
+          return 0;
+        }
+      });      
+    }
+    setSortedItems(sorted);
+  },[items,sortBy])
+
 
       return (
         <div>

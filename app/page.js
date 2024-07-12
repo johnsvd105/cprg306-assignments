@@ -14,6 +14,8 @@ export default function Home() {
           <a className="hover:underline" href="/week-6">Week 6 Assignment </a>
           <a className="hover:underline" href="/week-7">Week 7 Assignment </a>
           <a className="hover:underline" href="/week-8">Week 8 Assignment </a>
+          <a className="hover:underline" href="/week-10">Week 10 Assignment </a>
+
 
 
 

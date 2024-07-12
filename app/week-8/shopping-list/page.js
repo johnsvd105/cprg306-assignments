@@ -33,7 +33,7 @@ const Page = () => {
 
 
     return (
-        <main className=" bg-violet-950 h-screen">
+        <main className=" bg-violet-950">
             <div className="p-3 text-violet-50" >
                 <div>
                     {!user ? (

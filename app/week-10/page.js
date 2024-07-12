@@ -28,7 +28,7 @@ const Page = () => {
                         <div className="flex-col m-2">
                         <h1 className="font-bold text-xl"> Signed in as {user.displayName} ({user.email})</h1>
                         <h2 className="text-lg">
-                            <a className="hover:underline" href="/week-8/shopping-list">continue to your shopping list</a>
+                            <a className="hover:underline" href="/week-10/shopping-list">continue to your shopping list</a>
                         </h2>
                         <button onClick={handleFirebaseSignOut} className="bg-blue-600 p-2 mt-4 rounded-lg hover:bg-blue-700"> Sign out</button>
                         </div>
